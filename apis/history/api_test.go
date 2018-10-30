@@ -1,10 +1,10 @@
 package history
 
 import (
-	"github.com/scorum/bitshares-go/apis/database"
-	"github.com/scorum/bitshares-go/apis/login"
-	"github.com/scorum/bitshares-go/transport/websocket"
-	"github.com/scorum/bitshares-go/types"
+	"github.com/MixinNetwork/bitshares-go/apis/database"
+	"github.com/MixinNetwork/bitshares-go/apis/login"
+	"github.com/MixinNetwork/bitshares-go/transport/websocket"
+	"github.com/MixinNetwork/bitshares-go/types"
 	"github.com/stretchr/testify/require"
 	"testing"
 	"time"

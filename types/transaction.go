@@ -2,7 +2,7 @@ package types
 
 import (
 	"github.com/pkg/errors"
-	"github.com/scorum/bitshares-go/encoding/transaction"
+	"github.com/MixinNetwork/bitshares-go/encoding/transaction"
 )
 
 type Transaction struct {

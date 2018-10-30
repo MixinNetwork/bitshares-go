@@ -1,6 +1,6 @@
 package login
 
-import "github.com/scorum/bitshares-go/caller"
+import "github.com/MixinNetwork/bitshares-go/caller"
 
 const APIID = 1
 

@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"crypto/sha256"
 	"encoding/hex"
-	"github.com/scorum/bitshares-go/encoding/transaction"
-	"github.com/scorum/bitshares-go/types"
+	"github.com/MixinNetwork/bitshares-go/encoding/transaction"
+	"github.com/MixinNetwork/bitshares-go/types"
 	"log"
 
 	"github.com/btcsuite/btcd/btcec"

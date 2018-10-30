@@ -3,14 +3,14 @@ package websocket
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/scorum/bitshares-go/caller"
+	"github.com/MixinNetwork/bitshares-go/caller"
 	"log"
 	"math"
 	"strconv"
 	"sync"
 
 	"github.com/pkg/errors"
-	"github.com/scorum/scorum-go/transport"
+	"github.com/MixinNetwork/MixinNetwork-go/transport"
 	"golang.org/x/net/websocket"
 )
 

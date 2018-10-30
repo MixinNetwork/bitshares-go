@@ -2,7 +2,7 @@ package types
 
 import (
 	"encoding/json"
-	"github.com/scorum/bitshares-go/encoding/transaction"
+	"github.com/MixinNetwork/bitshares-go/encoding/transaction"
 	"strconv"
 )
 

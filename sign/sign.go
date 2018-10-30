@@ -6,7 +6,7 @@ import (
 	"crypto/sha256"
 	"errors"
 	"fmt"
-	"github.com/scorum/bitshares-go/sign/rfc6979"
+	"github.com/MixinNetwork/bitshares-go/sign/rfc6979"
 	"log"
 	"math/big"
 

@@ -2,8 +2,8 @@ package database
 
 import (
 	"encoding/json"
-	"github.com/scorum/bitshares-go/caller"
-	"github.com/scorum/bitshares-go/types"
+	"github.com/MixinNetwork/bitshares-go/caller"
+	"github.com/MixinNetwork/bitshares-go/types"
 )
 
 type API struct {
