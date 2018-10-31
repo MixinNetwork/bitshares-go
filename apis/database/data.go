@@ -2,6 +2,7 @@ package database
 
 import (
 	"encoding/json"
+
 	"github.com/MixinNetwork/bitshares-go/types"
 )
 
@@ -29,6 +30,7 @@ type Block struct {
 	Extensions            []json.RawMessage   `json:"extensions"`
 	WitnessSignature      string              `json:"witness_signature"`
 	Transactions          []types.Transaction `json:"transactions"`
+	TransactionIds        []string            `json:"transaction_ids"`
 }
 
 type MarketTicker struct {

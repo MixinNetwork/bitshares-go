@@ -1,8 +1,8 @@
 package types
 
 import (
-	"github.com/pkg/errors"
 	"github.com/MixinNetwork/bitshares-go/encoding/transaction"
+	"github.com/pkg/errors"
 )
 
 type Transaction struct {

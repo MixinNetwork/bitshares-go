@@ -2,12 +2,13 @@ package transaction
 
 import (
 	"encoding/binary"
-	"github.com/pkg/errors"
 	"io"
 	"math"
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/pkg/errors"
 )
 
 type Encoder struct {
