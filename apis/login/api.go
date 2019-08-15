@@ -1,6 +1,8 @@
 package login
 
-import "github.com/MixinNetwork/bitshares-go/caller"
+import (
+	"github.com/MixinNetwork/bitshares-go/caller"
+)
 
 const APIID = 1
 

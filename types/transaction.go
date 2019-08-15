@@ -6,9 +6,9 @@ import (
 )
 
 type Transaction struct {
-	RefBlockNum    uint16     `json:"ref_block_num"`
-	RefBlockPrefix uint32     `json:"ref_block_prefix"`
-	Expiration     Time       `json:"expiration"`
+	RefBlockNum    int64      `json:"ref_block_num"`
+	RefBlockPrefix int64      `json:"ref_block_prefix"`
+	Expiration     string     `json:"expiration"`
 	Operations     Operations `json:"operations"`
 	Signatures     []string   `json:"signatures"`
 }

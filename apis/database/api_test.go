@@ -2,12 +2,13 @@ package database
 
 import (
 	"encoding/json"
+	"testing"
+	"time"
+
 	"github.com/MixinNetwork/bitshares-go/apis/login"
 	"github.com/MixinNetwork/bitshares-go/transport/websocket"
 	"github.com/MixinNetwork/bitshares-go/types"
 	"github.com/stretchr/testify/require"
-	"testing"
-	"time"
 )
 
 const url = "wss://bitshares.openledger.info/ws"

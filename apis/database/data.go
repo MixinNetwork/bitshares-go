@@ -56,7 +56,7 @@ type LimitOrder struct {
 
 type DynamicGlobalProperties struct {
 	ID                             types.ObjectID `json:"id"`
-	HeadBlockNumber                uint32         `json:"head_block_number"`
+	HeadBlockNumber                int64          `json:"head_block_number"`
 	HeadBlockID                    string         `json:"head_block_id"`
 	Time                           types.Time     `json:"time"`
 	CurrentWitness                 types.ObjectID `json:"current_witness"`
@@ -65,7 +65,7 @@ type DynamicGlobalProperties struct {
 	AccountsRegisteredThisInterval int            `json:"accounts_registered_this_interval"`
 	DynamicFlags                   int            `json:"dynamic_flags"`
 	RecentSlotsFilled              string         `json:"recent_slots_filled"`
-	LastIrreversibleBlockNum       uint32         `json:"last_irreversible_block_num"`
+	LastIrreversibleBlockNum       int64          `json:"last_irreversible_block_num"`
 	CurrentAslot                   int64          `json:"current_aslot"`
 	WitnessBudget                  int64          `json:"witness_budget"`
 	RecentlyMissedCount            int64          `json:"recently_missed_count"`
