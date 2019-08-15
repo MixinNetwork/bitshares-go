@@ -3,14 +3,15 @@ package websocket
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/MixinNetwork/bitshares-go/caller"
 	"log"
 	"math"
 	"strconv"
 	"sync"
 
+	"github.com/MixinNetwork/bitshares-go/caller"
+
+	"github.com/MixinNetwork/bitshares-go/transport"
 	"github.com/pkg/errors"
-	"github.com/MixinNetwork/MixinNetwork-go/transport"
 	"golang.org/x/net/websocket"
 )
 

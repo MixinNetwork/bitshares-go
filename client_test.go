@@ -1,11 +1,13 @@
 package bitshares
 
 import (
-	"github.com/MixinNetwork/bitshares-go/types"
-	"github.com/stretchr/testify/require"
+	"fmt"
 	"log"
 	"testing"
 	"time"
+
+	"github.com/MixinNetwork/bitshares-go/types"
+	"github.com/stretchr/testify/require"
 )
 
 const (
@@ -45,11 +47,11 @@ func TestClient_Transfer(t *testing.T) {
 	to := cali4890ID
 	amount := types.AssetAmount{
 		AssetID: assets[0].ID,
-		Amount:  1000,
+		Amount:  fmt.Sprint(1000),
 	}
 	fee := types.AssetAmount{
 		AssetID: assets[0].ID,
-		Amount:  0,
+		Amount:  fmt.Sprint(0),
 	}
 
 	require.NoError(t, client.Transfer(cali4889IDActiveKey, from, to, amount, fee))
@@ -70,11 +72,11 @@ func TestClient_LimitOrderCreate(t *testing.T) {
 	require.NoError(t, err)
 
 	amSell := types.AssetAmount{
-		Amount:  100,
+		Amount:  fmt.Sprint(100),
 		AssetID: sellAsset[0].ID,
 	}
 	minBuy := types.AssetAmount{
-		Amount:  10,
+		Amount:  fmt.Sprint(10),
 		AssetID: buyAsset[0].ID,
 	}
 

@@ -4,9 +4,10 @@ import (
 	"bytes"
 	"crypto/sha256"
 	"encoding/hex"
+	"log"
+
 	"github.com/MixinNetwork/bitshares-go/encoding/transaction"
 	"github.com/MixinNetwork/bitshares-go/types"
-	"log"
 
 	"github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcutil"
