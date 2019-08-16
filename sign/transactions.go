@@ -12,7 +12,7 @@ func RefBlockNum(blockNumber int64) int64 {
 	return blockNumber
 }
 
-func RefBlockPrefix(blockID string) (int64, error) {
+func RefBlockPrefix(blockID string) (uint32, error) {
 	// Block ID is hex-encoded.
 	rawBlockID, err := hex.DecodeString(blockID)
 	if err != nil {
@@ -27,7 +27,7 @@ func RefBlockPrefix(blockID string) (int64, error) {
 	rawPrefix := rawBlockID[4:8]
 
 	// Decode the prefix.
-	var prefix int64
+	var prefix uint32
 	if err := binary.Read(bytes.NewReader(rawPrefix), binary.LittleEndian, &prefix); err != nil {
 		return 0, errors.Wrapf(err, "network_broadcast: failed to read block prefix: %v", rawPrefix)
 	}
