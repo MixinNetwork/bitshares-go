@@ -2,9 +2,10 @@ package types
 
 import (
 	"encoding/json"
-	"github.com/pkg/errors"
-	"github.com/MixinNetwork/bitshares-go/encoding/transaction"
 	"reflect"
+
+	"github.com/MixinNetwork/bitshares-go/encoding/transaction"
+	"github.com/pkg/errors"
 )
 
 type Operation interface {
@@ -132,6 +133,22 @@ type Memo struct {
 	Message string `json:"message"`
 }
 
+func (p Memo) MarshalTransaction(enc *transaction.Encoder) error {
+	if err := enc.Encode(p.From); err != nil {
+		return errors.Wrap(err, "encode from")
+	}
+	if err := enc.Encode(p.To); err != nil {
+		return errors.Wrap(err, "encode to")
+	}
+	if err := enc.Encode(p.Nonce); err != nil {
+		return errors.Wrap(err, "encode nonce")
+	}
+	if err := enc.Encode(p.Message); err != nil {
+		return errors.Wrap(err, "encode Message")
+	}
+	return nil
+}
+
 func (op *TransferOperation) Type() OpType { return TransferOpType }
 
 func (op *TransferOperation) MarshalTransaction(encoder *transaction.Encoder) error {
@@ -142,8 +159,13 @@ func (op *TransferOperation) MarshalTransaction(encoder *transaction.Encoder) er
 	enc.Encode(op.To)
 	enc.Encode(op.Amount)
 
-	//Memo?
-	enc.EncodeUVarint(0)
+	if op.Memo != nil && len(op.Memo.Message) > 0 {
+		enc.EncodeUVarint(1)
+		enc.Encode(op.Memo)
+	} else {
+		//Memo?
+		enc.EncodeUVarint(0)
+	}
 	//Extensions
 	enc.EncodeUVarint(0)
 	return enc.Err()
