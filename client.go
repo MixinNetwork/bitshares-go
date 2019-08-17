@@ -3,7 +3,9 @@ package bitshares
 import (
 	"encoding/json"
 
-	"github.com/pkg/errors"
+	"log"
+	"time"
+
 	"github.com/MixinNetwork/bitshares-go/apis/database"
 	"github.com/MixinNetwork/bitshares-go/apis/history"
 	"github.com/MixinNetwork/bitshares-go/apis/login"
@@ -12,8 +14,7 @@ import (
 	"github.com/MixinNetwork/bitshares-go/sign"
 	"github.com/MixinNetwork/bitshares-go/transport/websocket"
 	"github.com/MixinNetwork/bitshares-go/types"
-	"log"
-	"time"
+	"github.com/pkg/errors"
 )
 
 type Client struct {
@@ -193,7 +194,7 @@ func (client *Client) sign(wifs []string, operations ...types.Operation) (*sign.
 	expiration := props.Time.Add(10 * time.Minute)
 	stx := sign.NewSignedTransaction(&types.Transaction{
 		RefBlockNum:    sign.RefBlockNum(props.LastIrreversibleBlockNum - 1&0xffff),
-		RefBlockPrefix: refBlockPrefix,
+		RefBlockPrefix: int64(refBlockPrefix),
 		Expiration:     types.Time{Time: &expiration},
 	})
 
