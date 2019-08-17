@@ -2,12 +2,13 @@ package transaction
 
 import (
 	"encoding/binary"
-	"github.com/pkg/errors"
 	"io"
 	"math"
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/pkg/errors"
 )
 
 type Encoder struct {
@@ -93,10 +94,41 @@ func (encoder *Encoder) Encode(v interface{}) error {
 
 	case string:
 		return encoder.encodeString(v)
+	case float32:
+		return encoder.EncodeNumber(v)
+	case float64:
+		return encoder.EncodeNumber(v)
+	case []string:
+		return encoder.EncodeStringSlice(v)
+	case []byte:
+		return encoder.writeBytes(v)
+	case bool:
+		if v {
+			return encoder.EncodeNumber(uint8(1))
+		} else {
+			return encoder.EncodeNumber(uint8(0))
+		}
 
 	default:
 		return errors.Errorf("encoder: unsupported type (%+v) encountered", v)
 	}
+}
+
+func (p *Encoder) EncodeStringSlice(v []string) error {
+	if err := p.EncodeUVarint(uint64(len(v))); err != nil {
+		return errors.Errorf("EncodeUVarint [slice length]")
+	}
+
+	for _, val := range v {
+		if err := p.EncodeUVarint(uint64(len(val))); err != nil {
+			return errors.Errorf("EncodeUVarint [string length]")
+		}
+		if _, err := io.Copy(p.w, strings.NewReader(val)); err != nil {
+			return errors.Errorf("Copy [string]")
+		}
+	}
+
+	return nil
 }
 
 func (encoder *Encoder) EncodeMoney(s string) error {
