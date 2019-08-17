@@ -2,8 +2,8 @@ package types
 
 import (
 	"encoding/json"
-
 	"github.com/MixinNetwork/bitshares-go/encoding/transaction"
+	"strconv"
 )
 
 type Price struct {
@@ -12,13 +12,13 @@ type Price struct {
 }
 
 type AssetAmount struct {
-	Amount  string   `json:"amount"`
+	Amount  uint64   `json:"amount"`
 	AssetID ObjectID `json:"asset_id"`
 }
 
 func (aa AssetAmount) MarshalTransaction(encoder *transaction.Encoder) error {
 	enc := transaction.NewRollingEncoder(encoder)
-	enc.Encode(aa.Amount)
+	enc.EncodeLittleEndianUInt64(aa.Amount)
 	enc.Encode(aa.AssetID)
 	return enc.Err()
 }
@@ -26,11 +26,27 @@ func (aa AssetAmount) MarshalTransaction(encoder *transaction.Encoder) error {
 // RPC client might return asset amount as uint64 or string,
 // therefore a custom unmarshaller is used
 func (aa *AssetAmount) UnmarshalJSON(b []byte) (err error) {
-	var body AssetAmount
-	err = json.Unmarshal(b, &body)
-	if err == nil {
-		aa.AssetID = body.AssetID
-		aa.Amount = body.Amount
+	stringCase := struct {
+		Amount  string   `json:"amount"`
+		AssetID ObjectID `json:"asset_id"`
+	}{}
+
+	uint64Case := struct {
+		Amount  uint64   `json:"amount"`
+		AssetID ObjectID `json:"asset_id"`
+	}{}
+
+	if err = json.Unmarshal(b, &uint64Case); err == nil {
+		aa.AssetID = uint64Case.AssetID
+		aa.Amount = uint64Case.Amount
+		return nil
+	}
+
+	// failed on uint64, try string
+	if err = json.Unmarshal(b, &stringCase); err == nil {
+		aa.AssetID = stringCase.AssetID
+		aa.Amount, err = strconv.ParseUint(stringCase.Amount, 10, 64)
+		return err
 	}
 
 	return err
