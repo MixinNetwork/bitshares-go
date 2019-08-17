@@ -1,7 +1,6 @@
 package bitshares
 
 import (
-	"fmt"
 	"log"
 	"testing"
 	"time"
@@ -47,11 +46,11 @@ func TestClient_Transfer(t *testing.T) {
 	to := cali4890ID
 	amount := types.AssetAmount{
 		AssetID: assets[0].ID,
-		Amount:  fmt.Sprint(1000),
+		Amount:  1000,
 	}
 	fee := types.AssetAmount{
 		AssetID: assets[0].ID,
-		Amount:  fmt.Sprint(0),
+		Amount:  0,
 	}
 
 	require.NoError(t, client.Transfer(cali4889IDActiveKey, from, to, amount, fee))
@@ -72,11 +71,11 @@ func TestClient_LimitOrderCreate(t *testing.T) {
 	require.NoError(t, err)
 
 	amSell := types.AssetAmount{
-		Amount:  fmt.Sprint(100),
+		Amount:  100,
 		AssetID: sellAsset[0].ID,
 	}
 	minBuy := types.AssetAmount{
-		Amount:  fmt.Sprint(10),
+		Amount:  10,
 		AssetID: buyAsset[0].ID,
 	}
 
