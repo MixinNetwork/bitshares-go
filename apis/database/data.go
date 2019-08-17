@@ -65,7 +65,7 @@ type DynamicGlobalProperties struct {
 	AccountsRegisteredThisInterval int            `json:"accounts_registered_this_interval"`
 	DynamicFlags                   int            `json:"dynamic_flags"`
 	RecentSlotsFilled              string         `json:"recent_slots_filled"`
-	LastIrreversibleBlockNum       int64          `json:"last_irreversible_block_num"`
+	LastIrreversibleBlockNum       uint32         `json:"last_irreversible_block_num"`
 	CurrentAslot                   int64          `json:"current_aslot"`
 	WitnessBudget                  int64          `json:"witness_budget"`
 	RecentlyMissedCount            int64          `json:"recently_missed_count"`

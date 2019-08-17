@@ -194,7 +194,7 @@ func (client *Client) sign(wifs []string, operations ...types.Operation) (*sign.
 	expiration := props.Time.Add(10 * time.Minute)
 	stx := sign.NewSignedTransaction(&types.Transaction{
 		RefBlockNum:    sign.RefBlockNum(props.LastIrreversibleBlockNum - 1&0xffff),
-		RefBlockPrefix: int64(refBlockPrefix),
+		RefBlockPrefix: refBlockPrefix,
 		Expiration:     types.Time{Time: &expiration},
 	})
 

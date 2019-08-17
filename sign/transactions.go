@@ -8,8 +8,8 @@ import (
 	"github.com/pkg/errors"
 )
 
-func RefBlockNum(blockNumber int64) int64 {
-	return blockNumber
+func RefBlockNum(blockNumber uint32) uint16 {
+	return uint16(blockNumber)
 }
 
 func RefBlockPrefix(blockID string) (uint32, error) {
