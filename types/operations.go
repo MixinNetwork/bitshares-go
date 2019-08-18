@@ -127,10 +127,10 @@ type TransferOperation struct {
 }
 
 type Memo struct {
-	From    string `json:"from"`
-	To      string `json:"to"`
-	Nonce   string `json:"nonce"`
-	Message string `json:"message"`
+	From    PublicKey `json:"from"`
+	To      PublicKey `json:"to"`
+	Nonce   uint64    `json:"nonce"`
+	Message Buffer    `json:"message"`
 }
 
 func (p Memo) MarshalTransaction(enc *transaction.Encoder) error {
