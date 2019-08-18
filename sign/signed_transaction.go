@@ -32,6 +32,22 @@ func (tx *SignedTransaction) Serialize() ([]byte, error) {
 	return b.Bytes(), nil
 }
 
+func (tx *SignedTransaction) TransactionId() (string, error) {
+	var msgBuffer bytes.Buffer
+	rawTx, err := tx.Serialize()
+	if err != nil {
+		return "", err
+	}
+
+	if _, err := msgBuffer.Write(rawTx); err != nil {
+		return "", err
+	}
+
+	msgBytes := msgBuffer.Bytes()
+	digest := sha256.Sum256(msgBytes)
+	return hex.EncodeToString(digest[:20]), nil
+}
+
 func (tx *SignedTransaction) Digest(chain string) ([]byte, error) {
 	var msgBuffer bytes.Buffer
 
