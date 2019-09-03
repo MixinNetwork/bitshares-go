@@ -74,10 +74,12 @@ func (p PublicKey) MaxSharedKeyLength() int {
 	return (p.key.ToECDSA().Curve.Params().BitSize + 7) / 8
 }
 
-//NewPublicKey creates a new PublicKey from string
 func NewPublicKeyFromString(key string) (*PublicKey, error) {
-	prefixChain := "BTS"
+	return NewPublicKeyWithPrefixFromString(key, "BTS")
+}
 
+//NewPublicKey creates a new PublicKey from string
+func NewPublicKeyWithPrefixFromString(key, prefixChain string) (*PublicKey, error) {
 	prefix := key[:len(prefixChain)]
 
 	if prefix != prefixChain {
