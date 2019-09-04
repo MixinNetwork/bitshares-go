@@ -17,6 +17,7 @@ import (
 var (
 	ErrInvalidPublicKey             = fmt.Errorf("invalid PublicKey")
 	ErrPublicKeyChainPrefixMismatch = fmt.Errorf("PublicKey chain prefix mismatch")
+	PrefixChain                     = "BTS"
 )
 
 type PublicKey struct {
@@ -37,7 +38,7 @@ func (p *PublicKey) UnmarshalJSON(data []byte) error {
 		return errors.Wrap(err, "Unmarshal")
 	}
 
-	pub, err := NewPublicKeyFromString(key)
+	pub, err := NewPublicKeyWithPrefixFromString(key, PrefixChain)
 	if err != nil {
 		return errors.Wrap(err, "NewPublicKeyFromString")
 	}
@@ -75,7 +76,7 @@ func (p PublicKey) MaxSharedKeyLength() int {
 }
 
 func NewPublicKeyFromString(key string) (*PublicKey, error) {
-	return NewPublicKeyWithPrefixFromString(key, "BTS")
+	return NewPublicKeyWithPrefixFromString(key, PrefixChain)
 }
 
 //NewPublicKey creates a new PublicKey from string
